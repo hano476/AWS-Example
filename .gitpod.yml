@@ -1,14 +1,12 @@
-
 tasks:
   - name: AWS Sample
-    env:
-      AWS_CLI_AUTO_PROMT: On-partial        
-    before: |
-      cd /workspace 
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      sudo apt install unzip
-      cd $THEIA_WORKSPACE_ROOT
+    before:
+      - sudo apt update && sudo apt install -y unzip
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - sudo ./aws/install
+      - aws configure set cli_auto_prompt on-partial
+    command: aws --version
 
 
 
