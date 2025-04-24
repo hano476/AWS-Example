@@ -1,6 +1,8 @@
 
 tasks:
   - name: AWS Sample
+    env:
+      AWS_CLI_AUTO_PROMT=0n-partial        
     before: 
       cd /workspace 
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
