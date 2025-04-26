@@ -1,12 +1,25 @@
 tasks:
-  - name: AWS Sample
+  - name: util
     before: |
-      sudo apt update && sudo apt install -y unzip
+      sudo apt-get install tree
+  - name: powershell
+    before: |
+      sudo apt update
+      sudo apt install -y wget apt-transport-https software-properties-common
+      wget -q "https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb"
+      sudo dpkg -i packages-microsoft-prod.deb
+      sudo apt update
+      sudo apt install -y powershell
+  - name: awc-cli
+    env:
+      AWS_CLI_AUTO_PROMPT: on-partial
+    before: |
+      cd /workspace
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
       sudo ./aws/install
-      aws configure set cli_auto_prompt on-partial
-    command: aws --version
 
+      
+    
 
 
